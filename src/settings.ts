@@ -1,5 +1,6 @@
 import { createContext } from "solid-js";
 import { createStore } from "solid-js/store";
+import { Note } from "tonal";
 
 export const [settings, setSettings] = createStore<{
     questions: number,
@@ -13,11 +14,13 @@ export const [settings, setSettings] = createStore<{
     questions: 20,
     timer: 120,
 
-    start: -2,
-    end: 14,
+    start: Note.midi("A3")!,
+    end: Note.midi("C5")!,
     clef: "treble",
     mod: { none: true, sharp: true, dim: true },
 });
 
 export const SettingsCtx = createContext(settings);
 
+export const range = (start: number, stop: number, step = 1) =>
+    Array(Math.ceil((stop + 1 - start) / step)).fill(start).map((x, y) => x + y * step)
