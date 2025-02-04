@@ -18,3 +18,54 @@ body {
   /* background: rgb(var(--background-rgb)); */
   /* color: rgb(var(--foreground-rgb)); */
 }
+
+/* https://www.codingnepalweb.com/playable-piano-html-css-javascript/ */
+.keyboard {
+  display: flex;
+  list-style: none;
+  margin-top: 40px;
+}
+.keyboard .key {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  text-transform: uppercase;
+}
+.keyboard .black {
+  z-index: 2;
+  width: 44px;
+  height: 140px;
+  margin: 0 -22px 0 -22px;
+  border-radius: 0 0 5px 5px;
+  background: linear-gradient(#333, #000);
+}
+.keyboard .black.active {
+  box-shadow: inset -5px -10px 10px rgba(255,255,255,0.1);
+  background:linear-gradient(to bottom, #000, #434343);
+}
+.keyboard .white {
+  height: 230px;
+  width: 70px;
+  border-radius: 8px;
+  border: 1px solid #000;
+  background: linear-gradient(#fff 96%, #eee 4%);
+}
+.keyboard .white.active {
+  box-shadow: inset -5px 5px 20px rgba(0,0,0,0.2);
+  background:linear-gradient(to bottom, #fff 0%, #eee 100%);
+}
+.keyboard .key span {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  color: #A2A2A2;
+  font-size: 1.13rem;
+  text-align: center;
+}
+.keyboard .key.hide span {
+  display: none;
+}
+.keyboard .black span {
+  bottom: 13px;
+  color: #888888;
+}
