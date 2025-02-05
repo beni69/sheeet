@@ -21,7 +21,7 @@ export default function Sheet(props: Props) {
         const stave = new Stave(10, 40, 100);
         stave.addClef(props.clef);
         stave.setContext(ctx).draw();
-        const note = new StaveNote({ keys: [props.note], duration: "q", });
+        const note = new StaveNote({ keys: [props.note], duration: "q", clef: props.clef });
         props.modifier && note.addModifier(new Accidental(props.modifier));
         const voice = new Voice("1/4");
         voice.addTickable(note);
