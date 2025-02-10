@@ -15,10 +15,10 @@ export default function Sheet(props: Props) {
         ref.replaceChildren();
 
         const renderer = new Renderer(ref, Renderer.Backends.SVG);
-        renderer.resize(500, 200);
+        renderer.resize(100, 100);
         const ctx = renderer.getContext();
         ctx.setFont("Arial", 10);
-        const stave = new Stave(10, 40, 100);
+        const stave = new Stave(10, -10, 80);
         stave.addClef(props.clef);
         stave.setContext(ctx).draw();
         const note = new StaveNote({ keys: [props.note], duration: "q", clef: props.clef });
