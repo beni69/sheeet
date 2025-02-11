@@ -1,5 +1,6 @@
 import { createEffect, createSignal, Match, Switch } from "solid-js";
 import { Note } from "tonal";
+import { format, addSeconds } from "date-fns";
 import Keyboard from "~/components/Keyboard";
 import Sheet from "~/components/Sheet";
 import { range, settings } from "~/settings";
@@ -38,7 +39,21 @@ export default function Play() {
 
     const [note, setNote] = createSignal<Note.NoteType>(0 as never);
     const [hl, setHl] = createSignal({});
-    const started = Date.now(); // TODO: impl timer
+
+    const started = Date.now();
+    const [timer, setTimer] = createSignal(settings.timer);
+
+    setInterval(() => {
+        const elapsed = Math.ceil((Date.now() - started) / 1000);
+
+        if (round() > settings.questions || settings.timer - elapsed < 0) return;
+
+        setTimer(settings.timer - elapsed);
+    }, 100);
+    const fmtTimer = (timer: number) => {
+        const d = addSeconds(new Date(0), timer);
+        return format(d, "mm:ss");
+    };
 
     const nextRound = () => {
         setHl({});
@@ -50,7 +65,7 @@ export default function Play() {
         setNote(_note);
     };
 
-    const handleClick = (n: number) => (e: Event) => {
+    const handleClick = (n: number) => (_e: Event) => {
         if (note().midi === n) {
             setScore(score() + 1);
             setHl({ g: n })
@@ -69,14 +84,14 @@ export default function Play() {
     return (
         <main class="text-center mx-auto p-4">
             <Switch>
-                <Match when={round() <= settings.questions}>
-                    <h1>Score: {score()} - {round()}/{settings.questions}</h1>
+                <Match when={round() <= settings.questions && timer() > 0}>
+                    <h1>Score: {score()} - {round()}/{settings.questions} - {fmtTimer(timer())}</h1>
                     <Sheet clef={settings.clef} note={`${note().letter}/${note().oct}`} modifier={note().acc as any} />
                     <Keyboard handler={handleClick} start={settings.start} end={settings.end} skin="piano" hl={hl()} />
-
                 </Match>
-                <Match when={round() > settings.questions}>
-                    <h1>Score: {score()}/{settings.questions}</h1>
+
+                <Match when={round() > settings.questions || timer() <= 0}>
+                    <h1>Score: {score()}/{settings.questions} - {fmtTimer(settings.timer - timer())}</h1>
                 </Match>
             </Switch>
         </main>
