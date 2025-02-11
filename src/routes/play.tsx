@@ -1,9 +1,10 @@
 import { createEffect, createSignal, Match, Switch } from "solid-js";
+import { useNavigate } from "@solidjs/router";
 import { Note } from "tonal";
-import { format, addSeconds } from "date-fns";
 import Keyboard from "~/components/Keyboard";
 import Sheet from "~/components/Sheet";
 import { range, settings } from "~/settings";
+import { fmtTimer, saveScore } from "~/db";
 
 const addAccent = (n: Note.NoteType, x: string) =>
     Note.get(`${n.letter}${x}${n.oct}`);
@@ -34,6 +35,8 @@ const randNote = (start: number, end: number, _mod: typeof settings.mod) => {
 };
 
 export default function Play() {
+    const navigate = useNavigate();
+
     const [round, setRound] = createSignal(0);
     const [score, setScore] = createSignal(0);
 
@@ -43,6 +46,8 @@ export default function Play() {
     const started = Date.now();
     const [timer, setTimer] = createSignal(settings.timer);
 
+    const [waiting, setWaiting] = createSignal(false);
+
     setInterval(() => {
         const elapsed = Math.ceil((Date.now() - started) / 1000);
 
@@ -50,12 +55,9 @@ export default function Play() {
 
         setTimer(settings.timer - elapsed);
     }, 100);
-    const fmtTimer = (timer: number) => {
-        const d = addSeconds(new Date(0), timer);
-        return format(d, "mm:ss");
-    };
 
     const nextRound = () => {
+        setWaiting(false);
         setHl({});
         setRound(round() + 1);
 
@@ -66,13 +68,22 @@ export default function Play() {
     };
 
     const handleClick = (n: number) => (_e: Event) => {
+        if (waiting()) return;
         if (note().midi === n) {
             setScore(score() + 1);
             setHl({ g: n })
         } else {
             setHl({ r: n, g: note().midi })
         }
+        setWaiting(true);
         setTimeout(nextRound, 1000);
+    };
+
+    const handleSubmit = (_e: Event) => {
+        _e.preventDefault();
+        const name = (document.getElementById("lb-name") as HTMLInputElement).value;
+        saveScore({ name, score: score(), time: settings.timer - timer() });
+        navigate("/leaderboard");
     };
 
     nextRound();
@@ -82,7 +93,7 @@ export default function Play() {
     })
 
     return (
-        <main class="text-center mx-auto p-4">
+        <main class="text-center p-4 h-full flex justify-center items-center flex-col gap-6">
             <Switch>
                 <Match when={round() <= settings.questions && timer() > 0}>
                     <h1>Score: {score()} - {round()}/{settings.questions} - {fmtTimer(timer())}</h1>
@@ -92,6 +103,10 @@ export default function Play() {
 
                 <Match when={round() > settings.questions || timer() <= 0}>
                     <h1>Score: {score()}/{settings.questions} - {fmtTimer(settings.timer - timer())}</h1>
+                    <form onSubmit={handleSubmit} class="flex items-center">
+                        <input id="lb-name" class="p-2 m-1 border border-slate-400 rounded-md" type="text" />
+                        <button class="p-2 m-1 border border-slate-400 rounded-md"><div class="i-material-symbols-arrow-forward-rounded"></div></button>
+                    </form>
                 </Match>
             </Switch>
         </main>

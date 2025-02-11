@@ -15,8 +15,9 @@ export default function Index() {
                 </h1>
 
             </header>
-            <div class="text-2xl min-w-32 p-2 border border-slate-400 rounded-md"><A href="/play">Play</A></div>
-            <div class="text-2xl min-w-32 p-2 border border-slate-400 rounded-md w-32"><A href="/settings"><div class="inline-item mr-1 i-material-symbols-settings-rounded"></div>Settings</A></div>
+            <div class="text-2xl min-w-36 p-2 border border-slate-400 rounded-md"><A class="w-full h-full inline-block" href="/play">Play</A></div>
+            <div class="text-2xl min-w-36 p-2 border border-slate-400 rounded-md"><A class="w-full h-full inline-block" href="/leaderboard">Leaderboard</A></div>
+            <div class="text-2xl min-w-36 p-2 border border-slate-400 rounded-md w-32"><A class="w-full h-full inline-block" href="/settings"><div class="inline-item mr-1 i-material-symbols-settings-rounded"></div>Settings</A></div>
         </main>
     );
 }

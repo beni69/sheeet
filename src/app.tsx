@@ -3,7 +3,7 @@ import { FileRoutes } from "@solidjs/start/router";
 import { Link, MetaProvider } from "@solidjs/meta";
 import { Suspense } from "solid-js";
 import { SettingsCtx, settings } from "./settings";
-import '@unocss/reset/tailwind-compat.css';
+import '@unocss/reset/tailwind.css';
 import "./app.css";
 
 export default function App() {
