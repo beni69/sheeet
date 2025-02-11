@@ -1,22 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@unocss;
 
-:root {
-    --background-rgb: 214, 219, 220;
-    --foreground-rgb: 0, 0, 0;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background-rgb: 0, 0, 0;
-        --foreground-rgb: 255, 255, 255;
-    }
-}
-
-body {
-    /* background: rgb(var(--background-rgb)); */
-    /* color: rgb(var(--foreground-rgb)); */
+:root, body, #app {
+    height: 100%;
 }
 
 /* https://www.codingnepalweb.com/playable-piano-html-css-javascript/ */
