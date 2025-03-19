@@ -15,8 +15,8 @@ export default function Sheet(props: Props) {
         ref.replaceChildren();
 
         const renderer = new Renderer(ref, Renderer.Backends.SVG);
-        renderer.resize(100, 100);
-        const ctx = renderer.getContext();
+        renderer.resize(150, 150);
+        const ctx = renderer.getContext().scale(1.5, 1.5);
         ctx.setFont("Arial", 10);
         const stave = new Stave(10, -10, 80);
         stave.addClef(props.clef);
