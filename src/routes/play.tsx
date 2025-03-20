@@ -98,7 +98,14 @@ export default function Play() {
                 <Match when={round() <= settings.questions && timer() > 0}>
                     <h1>Score: {score()} - {round()}/{settings.questions} - {fmtTimer(timer())}</h1>
                     <Sheet clef={settings.clef} note={`${note().letter}/${note().oct}`} modifier={note().acc as any} />
-                    <Keyboard handler={handleClick} start={settings.start} end={settings.end} skin="piano" hl={hl()} />
+                    <Keyboard
+                        handler={handleClick}
+                        hl={hl()}
+                        start={settings.start}
+                        end={settings.end}
+                        skin="piano"
+                        showLetters={settings.letters}
+                    />
                 </Match>
 
                 <Match when={round() > settings.questions || timer() <= 0}>

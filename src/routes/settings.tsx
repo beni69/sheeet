@@ -12,6 +12,7 @@ export default function Settings() {
             timer: parseInt(data.timer),
             start: parseInt(data.start),
             end: parseInt(data.end),
+            letters: form.letters.checked,
         };
         setSettings(s);
     };
@@ -37,6 +38,9 @@ export default function Settings() {
                     <option value="treble">Treble</option>
                     <option value="bass">Bass</option>
                 </select>
+
+                <label for="letters" class="font-medium">Display letters</label>
+                <input type="checkbox" name="letters" checked={settings.letters} />
             </div>
             <div class="mt-6 flex space-x-4">
                 <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600">

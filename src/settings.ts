@@ -10,6 +10,7 @@ export const [settings, setSettings] = createStore<{
     end: number,
     clef: "treble" | "bass",
     mod: { none: boolean, sharp: boolean, dim: boolean },
+    letters: boolean,
 }>({
     questions: 20,
     timer: 120,
@@ -18,6 +19,7 @@ export const [settings, setSettings] = createStore<{
     end: Note.midi("C5")!,
     clef: "treble",
     mod: { none: true, sharp: true, dim: true },
+    letters: false,
 });
 
 export const SettingsCtx = createContext(settings);

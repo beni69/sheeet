@@ -15,6 +15,11 @@
     user-select: none;
     position: relative;
     text-transform: uppercase;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 .keyboard .black {
     z-index: 2;
@@ -33,26 +38,11 @@
     width: 70px;
     border-radius: 8px;
     border: 1px solid #000;
-    background: linear-gradient(#fff 96%, #eee 4%);
+    background: linear-gradient(#fff 94%, #eee);
 }
 .keyboard .white:hover {
     box-shadow: inset -5px 5px 20px rgba(0,0,0,0.2);
     background:linear-gradient(to bottom, #fff 0%, #eee 100%);
-}
-.keyboard .key span {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    color: #A2A2A2;
-    font-size: 1.13rem;
-    text-align: center;
-}
-.keyboard .key.hide span {
-    display: none;
-}
-.keyboard .black span {
-    bottom: 13px;
-    color: #888888;
 }
 
 .keyboard .key.red {
@@ -62,4 +52,13 @@
 .keyboard .key.green {
     background: #05df72;
     border: 1px solid #000;
+}
+
+.keyboard .key .letter {
+    color: #666666;
+    font-size: 1.1rem;
+    padding-bottom: 0.3em;
+}
+.keyboard .key.black .letter {
+    color: #777777;
 }
