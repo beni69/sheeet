@@ -1,7 +1,8 @@
-import { A } from "@solidjs/router";
+import { A, useNavigate } from "@solidjs/router";
 import { settings, setSettings, saveSettings } from "~/settings";
 
 export default function Settings() {
+    const navigate = useNavigate();
     const handleSubmit = (_e: Event) => {
         _e.preventDefault();
         const form = document.querySelector("form#settings") as HTMLFormElement;
@@ -16,6 +17,7 @@ export default function Settings() {
         };
         setSettings(s);
         saveSettings();
+        navigate("/");
     };
 
     return (
