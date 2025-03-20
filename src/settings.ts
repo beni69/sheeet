@@ -1,4 +1,3 @@
-import { createContext } from "solid-js";
 import { createStore } from "solid-js/store";
 import { Note } from "tonal";
 
@@ -22,7 +21,14 @@ export const [settings, setSettings] = createStore<{
     letters: false,
 });
 
-export const SettingsCtx = createContext(settings);
-
 export const range = (start: number, stop: number, step = 1) =>
     Array(Math.ceil((stop + 1 - start) / step)).fill(start).map((x, y) => x + y * step)
+
+export const saveSettings = () =>
+    localStorage.setItem("settings", JSON.stringify(settings));
+export const loadSettings = () => {
+    const res = localStorage.getItem("settings");
+    if (!res) return;
+    setSettings(JSON.parse(res));
+    console.debug("loaded settings:", settings);
+}

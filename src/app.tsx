@@ -2,24 +2,24 @@ import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Link, MetaProvider } from "@solidjs/meta";
 import { Suspense } from "solid-js";
-import { SettingsCtx, settings } from "./settings";
+import { loadSettings, settings } from "./settings";
 import '@unocss/reset/tailwind.css';
 import "./app.css";
 
 export default function App() {
+    loadSettings();
+
     return (
         <MetaProvider>
-            <SettingsCtx.Provider value={settings}>
-                <Router
-                    root={props => (
-                        <>
-                            <Suspense>{props.children}</Suspense>
-                        </>
-                    )}
-                >
-                    <FileRoutes />
-                </Router>
-            </SettingsCtx.Provider>
+            <Router
+                root={props => (
+                    <>
+                        <Suspense>{props.children}</Suspense>
+                    </>
+                )}
+            >
+                <FileRoutes />
+            </Router>
 
             <Link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
             <Link rel="icon" type="image/svg+xml" href="/favicon.svg" />

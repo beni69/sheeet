@@ -1,11 +1,6 @@
 import { A } from "@solidjs/router";
-import { useContext } from "solid-js";
-import { SettingsCtx } from "~/settings";
 
 export default function Index() {
-    const settings = useContext(SettingsCtx);
-    console.log({ settings });
-
     return (
         <main class="font-sans text-center p-4 flex justify-center items-center flex-col h-full gap-4">
             <header class="my-4">

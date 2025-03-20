@@ -1,5 +1,5 @@
 import { A } from "@solidjs/router";
-import { settings, setSettings } from "~/settings";
+import { settings, setSettings, saveSettings } from "~/settings";
 
 export default function Settings() {
     const handleSubmit = (_e: Event) => {
@@ -15,6 +15,7 @@ export default function Settings() {
             letters: form.letters.checked,
         };
         setSettings(s);
+        saveSettings();
     };
 
     return (
