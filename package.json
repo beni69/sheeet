@@ -7,23 +7,23 @@
     "start": "vinxi start"
   },
   "dependencies": {
-    "@solidjs/router": "^0.15.0",
-    "@solidjs/start": "^1.0.11",
-    "@unocss/reset": "^65.4.3",
+    "@solidjs/router": "^0.15.4",
+    "@solidjs/start": "^1.2.0",
+    "@unocss/reset": "^65.5.0",
     "date-fns": "^4.1.0",
-    "solid-js": "^1.9.2",
-    "tonal": "^6.4.0",
+    "solid-js": "^1.9.10",
+    "tonal": "^6.4.2",
     "vexflow": "^4.2.5",
     "vinxi": "^0.4.3"
   },
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.14",
+    "@iconify-json/material-symbols": "^1.2.48",
     "@solidjs/meta": "^0.29.4",
-    "@unocss/postcss": "^65.4.3",
-    "@unocss/preset-web-fonts": "^65.4.3",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "unocss": "^65.4.3"
+    "@unocss/postcss": "^65.5.0",
+    "@unocss/preset-web-fonts": "^65.5.0",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "unocss": "^65.5.0"
   },
   "overrides": {
     "vite": "5.4.10"
