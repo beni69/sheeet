@@ -1,4 +1,7 @@
-import { defineConfig, presetUno, presetWebFonts, presetIcons } from "unocss"
+import { defineConfig } from "unocss"
+import presetUno from "@unocss/preset-uno"
+import presetWebFonts from "@unocss/preset-web-fonts"
+import presetIcons from "@unocss/preset-icons"
 import { createLocalFontProcessor } from '@unocss/preset-web-fonts/local'
 
 export default defineConfig({
