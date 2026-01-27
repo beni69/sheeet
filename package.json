@@ -11,13 +11,13 @@
     "@solidjs/start": "^1.2.1",
     "@unocss/reset": "^66.6.0",
     "date-fns": "^4.1.0",
-    "solid-js": "^1.9.10",
-    "tonal": "^6.4.2",
+    "solid-js": "^1.9.11",
+    "tonal": "^6.4.3",
     "vexflow": "^5.0.0",
-    "vinxi": "^0.5.10"
+    "vinxi": "^0.5.11"
   },
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.51",
+    "@iconify-json/material-symbols": "^1.2.53",
     "@solidjs/meta": "^0.29.4",
     "@unocss/postcss": "^66.6.0",
     "@unocss/preset-icons": "^66.6.0",
